@@ -1,0 +1,7 @@
+@hostname = localhost
+@port = 8080
+@server_address=http://{{hostname}}:{{port}}
+
+### healthcheck & status
+GET {{server_address}}/api/status
+content-type: application/json
