@@ -1,0 +1,53 @@
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "sources",
+    srcs = glob(["**"]),
+    visibility = ["//simple_make:__subpackages__"],
+)
+
+# rust_binary(
+#     name = "game",
+#     srcs = ["src/main.rs"],
+#     data = [
+#         ":assets",
+#     ],
+#     deps = [
+#         "//game/cargo:bevy",
+#     ],
+#)
+
+genrule(
+    name = "actix-wrapper",
+    srcs = [":sources"],
+    outs = ["thot"],
+    cmd_bash = """
+    pushd web/actix-wrapper
+    cargo build --release
+    popd
+    cp web/actix-wrapper/target/release/thot $@
+    """,
+    executable = True,
+)
+
+# test_suite(
+#     name = "tests",
+#     tests = [
+#         ":unittest",
+#         # "public_api_unittest",
+#     ],
+# )
+
+# genrule(
+#     name = "unittest",
+#     srcs = [":sources"],
+#     outs = [
+#         "unittest.log",
+#         "target",
+#     ],
+#     cmd_bash = """
+#     pushd web/actix
+#     cargo test -- --nocapture | tee unittest.log
+#     popd
+#     """,
+# )

@@ -5,10 +5,12 @@
 pkgs.mkShell {               # mkShell is a helper function
   name="dev-environment";    # that requires a name
   buildInputs =  with pkgs; [
+    curl
   	rustc
     cargo
     python38Full
     bazelisk
+    bazel-buildtools
     starship
   ];
   # bash to run when you enter the shell
