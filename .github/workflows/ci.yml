@@ -17,7 +17,7 @@ jobs:
           profile: minimal
           toolchain: stable
 
-      - uses: Swatinem/rust-cache@v1
+      # - uses: Swatinem/rust-cache@v1
 
       # Caches and restores the bazel build directory.
       - name: Cache bazel build results
