@@ -8,7 +8,7 @@ pkgs.mkShell {               # mkShell is a helper function
     curl
   	rustc
     cargo
-    python38Full
+    # python38Full
     bazelisk
     bazel-buildtools
     starship
