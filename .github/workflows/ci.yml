@@ -32,7 +32,7 @@ jobs:
 
       # build and test
       - name: Build the code
-        run: bazel build ...--sandbox_writable_path $HOME/.cargo
+        run: bazel build ... --sandbox_writable_path $HOME/.cargo
 
       - name: Test the code
         # run: bazel test --test_output=errors --test_tag_filters=-integration-test ...
