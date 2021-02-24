@@ -16,8 +16,7 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-
-      # - uses: Swatinem/rust-cache@v1
+      - uses: Swatinem/rust-cache@v1
 
       # Caches and restores the bazel build directory.
       - name: Cache bazel build results
@@ -33,7 +32,6 @@ jobs:
       # build and test
       - name: Build the code
         run: bazel build ... --sandbox_writable_path $HOME/.cargo
-
-      - name: Test the code
-        # run: bazel test --test_output=errors --test_tag_filters=-integration-test ...
-        run: bazel test ...
+      # - name: Test the code
+      #   # run: bazel test --test_output=errors --test_tag_filters=-integration-test ...
+      #   run: bazel test ...
