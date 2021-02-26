@@ -6,17 +6,6 @@ filegroup(
     visibility = ["//simple_make:__subpackages__"],
 )
 
-# rust_binary(
-#     name = "game",
-#     srcs = ["src/main.rs"],
-#     data = [
-#         ":assets",
-#     ],
-#     deps = [
-#         "//game/cargo:bevy",
-#     ],
-#)
-
 genrule(
     name = "actix-wrapper",
     srcs = [":sources"],
