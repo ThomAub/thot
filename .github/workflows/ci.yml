@@ -1,0 +1,37 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, which is the CWD for
+      # the rest of the steps
+      - uses: actions/checkout@v2
+
+      # Install Rust toolchain & cache
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+      - uses: Swatinem/rust-cache@v1
+
+      # Caches and restores the bazel build directory.
+      - name: Cache bazel build results
+        uses: actions/cache@v2.0.0
+        env:
+          cache-name: bazel-cache
+        with:
+          path: ~/.cache/bazel
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-master
+
+      # build and test
+      - name: Build the code
+        run: bazel build ... --sandbox_writable_path $HOME/.cargo
+      # - name: Test the code
+      #   # run: bazel test --test_output=errors --test_tag_filters=-integration-test ...
+      #   run: bazel test ...
