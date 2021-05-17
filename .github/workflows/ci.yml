@@ -20,7 +20,7 @@ jobs:
 
       # Caches and restores the bazel build directory.
       - name: Cache bazel build results
-        uses: actions/cache@v2.0.0
+        uses: actions/cache@v2.1.5
         env:
           cache-name: bazel-cache
         with:
